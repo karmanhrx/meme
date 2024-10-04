@@ -20,9 +20,20 @@ def load_proxies():
 proxies = load_proxies()
 
 # HANDLE SEMUA ERROR TAROH DISINI BANG SAFE_POST
-def safe_post(url, headers, json_payload):
-    retries = 5
-    timeout = 5  # Timeout in seconds for each connection attempt
+def safe_post(url, headers, json_payload, retries=5, timeout=5):
+    """
+    Send a POST request to the Memefi API with retries.
+
+    Args:
+        url (str): The URL of the API endpoint.
+        headers (dict): The headers to include in the request.
+        json_payload (dict): The JSON payload to send in the request.
+        retries (int, optional): The number of retries to attempt. Defaults to 5.
+        timeout (int, optional): The timeout in seconds for each connection attempt. Defaults to 5.
+
+    Returns:
+        dict: The JSON response from the API, or None if the request fails.
+    """
     for attempt in range(retries):
         try:
             if proxies:
